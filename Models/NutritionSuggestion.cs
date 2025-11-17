@@ -36,9 +36,9 @@ namespace FitnessTracker.WPF.Models
 
         public bool IsAIGenerated { get; set; } = true;
 
-        public string? AIPrompt { get; set; }
+        public string AIPrompt { get; set; }
 
-        public string? AIResponse { get; set; }
+        public string AIResponse { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 

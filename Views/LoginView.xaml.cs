@@ -30,5 +30,10 @@ namespace FitnessTracker.WPF.Views
                 viewModel.Password = PasswordBox.Password;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

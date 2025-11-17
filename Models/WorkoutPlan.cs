@@ -31,7 +31,7 @@ namespace FitnessTracker.WPF.Models
 
         public bool IsAIGenerated { get; set; } = false;
 
-        public string? AIPrompt { get; set; }
+        public string AIPrompt { get; set; }
 
         public bool IsActive { get; set; } = true;
 

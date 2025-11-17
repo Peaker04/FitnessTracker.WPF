@@ -40,7 +40,7 @@ namespace FitnessTracker.WPF.ViewModels
         public ICommand RegisterCommand { get; }
 
         public event Action<User> LoginSuccessful;
-
+        public event Action RequestToRegister;
         public LoginViewModel(IDatabaseService databaseService)
         {
             _databaseService = databaseService;
@@ -77,7 +77,7 @@ namespace FitnessTracker.WPF.ViewModels
 
         private void NavigateToRegister()
         {
-            // Navigate to register view
+            RequestToRegister?.Invoke();
         }
     }
 }

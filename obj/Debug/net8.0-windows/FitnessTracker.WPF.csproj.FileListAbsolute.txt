@@ -133,3 +133,5 @@ D:\PRN-C#\Baitap\FitnessTracker.WPF\FitnessTracker.WPF\bin\Debug\net8.0-windows\
 D:\PRN-C#\Baitap\FitnessTracker.WPF\FitnessTracker.WPF\obj\Debug\net8.0-windows\App.baml
 D:\PRN-C#\Baitap\FitnessTracker.WPF\FitnessTracker.WPF\obj\Debug\net8.0-windows\Views\WorkoutPlanView.baml
 D:\PRN-C#\Baitap\FitnessTracker.WPF\FitnessTracker.WPF\obj\Debug\net8.0-windows\FitnessTracker.WPF.sourcelink.json
+D:\PRN-C#\Baitap\FitnessTracker.WPF\FitnessTracker.WPF\obj\Debug\net8.0-windows\RegisterView.g.cs
+D:\PRN-C#\Baitap\FitnessTracker.WPF\FitnessTracker.WPF\obj\Debug\net8.0-windows\RegisterView.baml
