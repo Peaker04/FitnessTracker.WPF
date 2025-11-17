@@ -24,5 +24,19 @@ namespace FitnessTracker.WPF.Helpers
 
         public static IEnumerable<Gender> Genders =>
             Enum.GetValues(typeof(Gender)).Cast<Gender>();
+
+        // --- Bổ sung các Enum còn thiếu ---
+
+        public static IEnumerable<UnitSystem> UnitSystems =>
+            Enum.GetValues(typeof(UnitSystem)).Cast<UnitSystem>();
+
+        public static IEnumerable<ThemeMode> ThemeModes =>
+            Enum.GetValues(typeof(ThemeMode)).Cast<ThemeMode>();
+
+        public static IEnumerable<WorkoutSessionStatus> WorkoutSessionStatuses =>
+            Enum.GetValues(typeof(WorkoutSessionStatus)).Cast<WorkoutSessionStatus>();
+
+        public static IEnumerable<AIRequestType> AIRequestTypes =>
+            Enum.GetValues(typeof(AIRequestType)).Cast<AIRequestType>();
     }
 }
