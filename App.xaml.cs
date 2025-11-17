@@ -112,21 +112,27 @@ namespace FitnessTracker.WPF
 
         private void ConfigureServices(IServiceCollection services)
         {
-            // ... (Giữ nguyên phần cấu hình Services của bạn như cũ) ...
-            services.AddSingleton(Configuration);
+            // ... (Phần Configuration giữ nguyên) ...
 
+            // 1. SỬA LỖI: Đổi AddDbContext thành Transient (Mặc định là Scoped)
+            // Thêm tham số ServiceLifetime.Transient
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<FitnessDbContext>(options =>
-                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)),
+                ServiceLifetime.Transient);
 
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IExerciseRepository, ExerciseRepository>();
-            services.AddScoped<IWorkoutRepository, WorkoutRepository>();
-            services.AddScoped<IProgressRepository, ProgressRepository>();
+            // 2. SỬA LỖI: Đổi tất cả AddScoped -> AddTransient
+            // Để đảm bảo mỗi lần gọi là một instance mới, không dùng chung Context cũ
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IExerciseRepository, ExerciseRepository>();
+            services.AddTransient<IWorkoutRepository, WorkoutRepository>();
+            services.AddTransient<IProgressRepository, ProgressRepository>();
 
-            services.AddScoped<IDatabaseService, DatabaseService>();
-            services.AddScoped<IAIService, AIService>();
+            services.AddTransient<IDatabaseService, DatabaseService>();
+            services.AddTransient<IAIService, AIService>();
 
+            // ... (Phần ViewModels và Views giữ nguyên là AddTransient như cũ) ...
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<MainViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<DashboardViewModel>();
