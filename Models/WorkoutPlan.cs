@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FitnessTracker.WPF.Models
 {
@@ -17,9 +14,10 @@ namespace FitnessTracker.WPF.Models
         public int UserId { get; set; }
 
         [Required, MaxLength(100)]
-        public string PlanName { get; set; }
+        public string PlanName { get; set; } // Bắt buộc, giữ nguyên
 
-        public string Description { get; set; }
+        // THÊM DẤU ? ĐỂ CHO PHÉP NULL
+        public string? Description { get; set; }
 
         public FitnessGoal Goal { get; set; }
 
@@ -31,7 +29,8 @@ namespace FitnessTracker.WPF.Models
 
         public bool IsAIGenerated { get; set; } = false;
 
-        public string AIPrompt { get; set; }
+        // THÊM DẤU ? ĐỂ CHO PHÉP NULL (Vì AI có thể chưa tạo prompt hoặc DB cũ null)
+        public string? AIPrompt { get; set; }
 
         public bool IsActive { get; set; } = true;
 
@@ -43,7 +42,6 @@ namespace FitnessTracker.WPF.Models
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        // Navigation Properties
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
 

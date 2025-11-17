@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FitnessTracker.WPF.Models
 {
@@ -18,7 +14,7 @@ namespace FitnessTracker.WPF.Models
 
         public int ExerciseId { get; set; }
 
-        public int DayNumber { get; set; } // 1-7
+        public int DayNumber { get; set; }
 
         public int OrderIndex { get; set; }
 
@@ -31,11 +27,11 @@ namespace FitnessTracker.WPF.Models
 
         public int? PlannedRestSeconds { get; set; } = 60;
 
-        public string Notes { get; set; }
+        // THÊM DẤU ? ĐỂ CHO PHÉP NULL
+        public string? Notes { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Navigation Properties
         [ForeignKey("WorkoutPlanId")]
         public virtual WorkoutPlan WorkoutPlan { get; set; }
 

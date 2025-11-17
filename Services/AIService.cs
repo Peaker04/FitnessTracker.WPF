@@ -30,26 +30,22 @@ namespace FitnessTracker.WPF.Services
             _client = new RestClient("https://api.openai.com/v1");
         }
 
-        public async Task<string> GenerateWorkoutPlanAsync(
-            FitnessGoal goal,
-            PreferredEnvironment environment,
-            int daysPerWeek)
+        public async Task<string> GenerateWorkoutPlanAsync(FitnessGoal goal, PreferredEnvironment environment, int daysPerWeek)
         {
-            if (!IsEnabled)
-                return GetFallbackWorkoutPlan(goal, environment, daysPerWeek);
+            if (!IsEnabled) return GetFallbackWorkoutPlanJSON(goal, environment, daysPerWeek);
 
             try
             {
-                var prompt = $@"Create a {daysPerWeek}-day per week workout plan for someone with goal: {goal} 
-                                training at: {environment}. Include exercise names, sets, and reps.";
+                // Yêu cầu AI trả về JSON
+                var prompt = $@"Create a {daysPerWeek}-day workout plan for goal: {goal}, environment: {environment}. 
+                                Return ONLY a valid JSON array of objects. Do not include markdown formatting or extra text.
+                                JSON format: [{{ ""Day"": 1, ""ExerciseName"": ""Name"", ""Sets"": 3, ""Reps"": ""10-12"" }}]";
 
-                var response = await CallOpenAIAsync(prompt);
-                return response;
+                return await CallOpenAIAsync(prompt);
             }
-            catch (Exception ex)
+            catch
             {
-                // Log error
-                return GetFallbackWorkoutPlan(goal, environment, daysPerWeek);
+                return GetFallbackWorkoutPlanJSON(goal, environment, daysPerWeek);
             }
         }
 
@@ -113,10 +109,15 @@ namespace FitnessTracker.WPF.Services
         }
 
         // Fallback methods khi AI không available
-        private string GetFallbackWorkoutPlan(FitnessGoal goal, PreferredEnvironment environment, int days)
+        private string GetFallbackWorkoutPlanJSON(FitnessGoal goal, PreferredEnvironment environment, int days)
         {
-            return $"Basic {goal} workout plan for {environment} - {days} days/week:\n" +
-                   "Day 1: Upper Body\nDay 2: Lower Body\nDay 3: Core & Cardio";
+            var mockData = new List<object>();
+            for (int i = 1; i <= days; i++)
+            {
+                mockData.Add(new { Day = i, ExerciseName = $"Push Up (Day {i})", Sets = 3, Reps = "10" });
+                mockData.Add(new { Day = i, ExerciseName = $"Squat (Day {i})", Sets = 3, Reps = "12" });
+            }
+            return JsonConvert.SerializeObject(mockData);
         }
 
         private string GetFallbackNutritionAdvice(WorkoutSession session, User user)
