@@ -62,11 +62,17 @@ namespace FitnessTracker.WPF
             services.AddScoped<IAIService, AIService>();
 
             // ViewModels
+            // --- SỬA LỖI TẠI ĐÂY ---
+            services.AddTransient<MainViewModel>();            // Đã thêm: Sửa lỗi crash khởi động
             services.AddTransient<LoginViewModel>();
             services.AddTransient<DashboardViewModel>();
             services.AddTransient<WorkoutPlanViewModel>();
             services.AddTransient<WorkoutSessionViewModel>();
             services.AddTransient<StatisticsViewModel>();
+
+            // Đăng ký thêm 2 ViewModel này vì MainViewModel có logic điều hướng đến chúng
+            services.AddTransient<ExerciseLibraryViewModel>(); // Đã thêm
+            services.AddTransient<SettingsViewModel>();        // Đã thêm
 
             // Views
             services.AddTransient<MainWindow>();

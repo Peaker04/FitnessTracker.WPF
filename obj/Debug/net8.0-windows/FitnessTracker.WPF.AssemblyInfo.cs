@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FitnessTracker.WPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f25b829fb10127fac9d25d79d256e753517804ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ff8577f6b70ab5d0df1c0a8460df36d268a3714")]
 [assembly: System.Reflection.AssemblyProductAttribute("FitnessTracker.WPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FitnessTracker.WPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -69,7 +69,7 @@ namespace FitnessTracker.WPF.ViewModels
             IsBusy = true;
             try
             {
-                [cite_start]// Gọi AI Service [cite: 159-160]
+                // Gọi AI Service [cite: 159-160]
                 GeneratedPlanText = await _aiService.GenerateWorkoutPlanAsync(SelectedGoal, SelectedEnvironment, DaysPerWeek);
             }
             finally
