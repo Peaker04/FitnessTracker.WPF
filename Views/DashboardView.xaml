@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="FitnessTracker.WPF.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Tổng Quan Hoạt Động" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="#FF6B35" CornerRadius="10" Padding="15" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Tổng Buổi Tập" Foreground="White" FontSize="14"/>
+                    <TextBlock Text="{Binding TotalWorkouts}" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="#2C3E50" CornerRadius="10" Padding="15" Margin="5,0,5,0">
+                <StackPanel>
+                    <TextBlock Text="Calories (Kcal)" Foreground="White" FontSize="14"/>
+                    <TextBlock Text="{Binding CaloriesBurned}" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Background="#06D6A0" CornerRadius="10" Padding="15" Margin="10,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="Phút Vận Động" Foreground="White" FontSize="14"/>
+                    <TextBlock Text="{Binding ActiveMinutes}" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Hoạt Động Gần Đây" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+            <ListView Grid.Row="1" ItemsSource="{Binding RecentActivities}" BorderThickness="1" BorderBrush="#EEEEEE">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Ngày" DisplayMemberBinding="{Binding SessionDate, StringFormat=dd/MM/yyyy}" Width="100"/>
+                        <GridViewColumn Header="Tên Buổi Tập" DisplayMemberBinding="{Binding SessionName}" Width="200"/>
+                        <GridViewColumn Header="Thời Gian (phút)" DisplayMemberBinding="{Binding TotalDurationMinutes}" Width="120"/>
+                        <GridViewColumn Header="Calories" DisplayMemberBinding="{Binding TotalCaloriesBurned}" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>
